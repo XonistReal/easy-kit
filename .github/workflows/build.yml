@@ -6,11 +6,8 @@ on:
     branches: [main]
     paths-ignore:
       - "**.md"
-      - "**.spec.js"
       - ".idea"
       - ".vscode"
-      - ".dockerignore"
-      - "Dockerfile"
       - ".gitignore"
       - ".github/**"
       - "!.github/workflows/build.yml"
@@ -20,11 +17,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: macos-latest
 
     steps:
       - name: Checkout Code
@@ -36,18 +29,19 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 22
+          cache: npm
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build Release Files
-        run: npm run build
+      - name: Build App
+        run: npm run build:dir
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
-          name: release_on_${{ matrix.os }}
+          name: easy-kit-maker-macos
           path: release/
           retention-days: 5

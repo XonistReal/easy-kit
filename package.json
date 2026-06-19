@@ -6,6 +6,25 @@
   "type": "module",
   "main": "dist-electron/main/index.js",
   "author": "Joel Rhoads",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XonistReal/easy-kit.git"
+  },
+  "homepage": "https://github.com/XonistReal/easy-kit#readme",
+  "bugs": {
+    "url": "https://github.com/XonistReal/easy-kit/issues"
+  },
+  "keywords": [
+    "fl-studio",
+    "drum-kit",
+    "electron",
+    "sample-manager",
+    "music-production"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build && electron-builder",

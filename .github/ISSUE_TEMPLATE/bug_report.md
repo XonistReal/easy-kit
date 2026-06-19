@@ -1,11 +1,24 @@
 ---
 
-name: 🐞 Bug report
-about: Create a report to help us improve
-title: "[Bug] the title of bug report"
+name: Bug report
+about: Report a problem with Easy Kit Maker
+title: "[Bug] "
 labels: bug
 assignees: ''
 
 ---
 
-#### Describe the bug
+### Describe the bug
+
+### Steps to reproduce
+
+1.
+2.
+
+### Expected behavior
+
+### Environment
+
+- macOS version:
+- Easy Kit Maker version:
+- Node.js version (if building from source):

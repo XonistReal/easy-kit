@@ -2,6 +2,8 @@
 
 Build organized FL Studio drum kits from your most-used samples — scan projects, review sounds, customize browser folders, and export with `.nfo` styling.
 
+**Repository:** [github.com/XonistReal/easy-kit](https://github.com/XonistReal/easy-kit)
+
 ## Features
 
 - Scan FL Studio project folders and rank samples by usage
@@ -21,17 +23,33 @@ Build organized FL Studio drum kits from your most-used samples — scan project
 ## Development
 
 ```sh
-npm install
+git clone https://github.com/XonistReal/easy-kit.git
+cd easy-kit
+npm ci
 npm run dev
 ```
 
-## Build
+## Scripts
 
-```sh
-npm run build:dir
-npm run install:mac   # copies app to /Applications
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start Vite + Electron in development |
+| `npm run typecheck` | Run TypeScript without emitting |
+| `npm run build:dir` | Build unpacked macOS app in `release/` |
+| `npm run build` | Build macOS DMG + ZIP |
+| `npm run install:mac` | Copy built app to `/Applications` |
+
+## Project layout
+
+```text
+electron/main/     Main process (scan, export, IPC)
+electron/preload/  Preload bridge
+src/components/    React UI
+src/shared/        Shared types and helpers
+build/             App icons for electron-builder
+public/            Static assets (favicon)
 ```
 
 ## License
 
-Private — Joel Rhoads
+MIT © Joel Rhoads
