@@ -1,12 +1,10 @@
 import { access } from 'node:fs/promises'
 import { homedir } from 'node:os'
 import path from 'node:path'
+import { FL_PACKS_PATH_CANDIDATES } from './fl-path-defaults'
 import { getSettings } from './settings'
 
-const FL_PACKS_CANDIDATES = [
-  'Documents/Image-Line/FL Studio/Audio/Packs',
-  'Documents/Image-Line/FL Studio/Packs',
-]
+export { getDefaultFlPaths, getDefaultFlPacksPath, getDefaultFlProjectsPath } from './fl-path-defaults'
 
 export async function resolveFlPacksPath(): Promise<string> {
   const settings = getSettings()
@@ -20,7 +18,7 @@ export async function resolveFlPacksPath(): Promise<string> {
   }
 
   const home = homedir()
-  for (const candidate of FL_PACKS_CANDIDATES) {
+  for (const candidate of FL_PACKS_PATH_CANDIDATES) {
     const full = path.join(home, candidate)
     try {
       await access(full)
@@ -30,5 +28,5 @@ export async function resolveFlPacksPath(): Promise<string> {
     }
   }
 
-  return path.join(home, FL_PACKS_CANDIDATES[0])
+  return path.join(home, FL_PACKS_PATH_CANDIDATES[0])
 }

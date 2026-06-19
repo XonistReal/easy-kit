@@ -19,6 +19,7 @@ assignees: ''
 
 ### Environment
 
-- macOS version:
+- OS (macOS / Windows):
+- OS version:
 - Easy Kit Maker version:
 - Node.js version (if building from source):

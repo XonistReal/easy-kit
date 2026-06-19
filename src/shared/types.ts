@@ -196,11 +196,11 @@ export interface AppSettings {
   installToFl: boolean
 }
 
-export const DEFAULT_FL_PROJECTS_PATH =
-  '/Users/joelrhoads/Documents/Image-Line/FL Studio/Projects'
+/** Resolved at runtime in the Electron main process (see fl-paths.ts). */
+export const DEFAULT_FL_PROJECTS_PATH = ''
 
-export const DEFAULT_FL_PACKS_PATH =
-  '/Users/joelrhoads/Documents/Image-Line/FL Studio/Audio/Packs'
+/** Resolved at runtime in the Electron main process (see fl-paths.ts). */
+export const DEFAULT_FL_PACKS_PATH = ''
 
 export const DEFAULT_SETTINGS: AppSettings = {
   lastFolders: [],

@@ -24,7 +24,7 @@ const AUDIO_EXTS = new Set(['.wav', '.mp3', '.ogg', '.flac', '.aiff', '.aif'])
 
 export default function App() {
   const [settings, setSettings] = useState<AppSettings>(DEFAULT_SETTINGS)
-  const [folders, setFolders] = useState<string[]>([DEFAULT_SETTINGS.defaultFlProjectsPath])
+  const [folders, setFolders] = useState<string[]>([])
   const [samples, setSamples] = useState<SampleRecord[]>([])
   const [kitCustomization, setKitCustomization] = useState<KitCustomization | null>(null)
   const [scanResult, setScanResult] = useState<ScanResult | null>(null)

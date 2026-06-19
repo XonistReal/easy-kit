@@ -16,9 +16,11 @@ Build organized FL Studio drum kits from your most-used samples — scan project
 
 ## Requirements
 
-- macOS (primary target)
+- macOS or Windows 10/11
 - Node.js 20+
-- Optional: `fpcalc` for near-duplicate detection (`brew install chromaprint`)
+- Optional: `fpcalc` for near-duplicate detection
+  - macOS: `brew install chromaprint`
+  - Windows: `winget install AcoustID.Chromaprint` or `choco install chromaprint`
 
 ## Development
 
@@ -35,9 +37,20 @@ npm run dev
 | --- | --- |
 | `npm run dev` | Start Vite + Electron in development |
 | `npm run typecheck` | Run TypeScript without emitting |
-| `npm run build:dir` | Build unpacked macOS app in `release/` |
-| `npm run build` | Build macOS DMG + ZIP |
-| `npm run install:mac` | Copy built app to `/Applications` |
+| `npm run build:dir` | Build unpacked app in `release/` (current OS) |
+| `npm run build` | Build installers for the current OS |
+| `npm run build:mac` | Build macOS DMG + ZIP |
+| `npm run build:win` | Build Windows NSIS installer + ZIP |
+| `npm run install:mac` | Copy built app to `/Applications` (macOS only) |
+
+## FL Studio paths
+
+On first launch, the app looks for the standard Image-Line folders under your user Documents directory:
+
+- Projects: `Documents/Image-Line/FL Studio/Projects`
+- Packs: `Documents/Image-Line/FL Studio/Audio/Packs`
+
+You can override these in the app settings or during export.
 
 ## Project layout
 

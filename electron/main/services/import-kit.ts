@@ -1,15 +1,12 @@
-import { execFile } from 'node:child_process'
 import { randomBytes } from 'node:crypto'
 import { readdir, stat } from 'node:fs/promises'
 import path from 'node:path'
-import { promisify } from 'node:util'
 import { app } from 'electron'
 import { readAudioTags } from './audio-metadata'
 import type { ImportKitResult, SampleRecord } from '../../../src/shared/types'
 import { classifySample } from './classify'
 import { hashFile } from './dedupe'
-
-const execFileAsync = promisify(execFile)
+import { extractZipArchive } from './zip-utils'
 
 const AUDIO_EXTS = new Set(['.wav', '.mp3', '.ogg', '.flac', '.aiff', '.aif'])
 const SKIP_DIRS = new Set(['node_modules', '.git', 'Backup', 'backup', '__MACOSX'])
@@ -64,7 +61,7 @@ async function extractZip(zipPath: string): Promise<string> {
     app.getPath('temp'),
     `easy-kit-maker-import-${randomBytes(6).toString('hex')}`,
   )
-  await execFileAsync('ditto', ['-x', '-k', zipPath, destDir])
+  await extractZipArchive(zipPath, destDir)
   return destDir
 }
 
