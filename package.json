@@ -1,0 +1,78 @@
+{
+  "name": "easy-kit-maker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build drum kits from your most-used FL Studio samples",
+  "type": "module",
+  "main": "dist-electron/main/index.js",
+  "author": "Joel Rhoads",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && electron-builder",
+    "build:dir": "vite build && electron-builder --dir",
+    "install:mac": "cp -R \"release/1.0.0/mac-arm64/Easy Kit Maker.app\" /Applications/",
+    "open:app": "open \"/Applications/Easy Kit Maker.app\"",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "electron-store": "^10.1.0",
+    "ffmpeg-static": "^5.3.0",
+    "music-metadata": "^11.0.2",
+    "ts-flp": "^1.0.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/react": "^19.2.16",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
+    "electron": "^42.1.0",
+    "electron-builder": "^26.8.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vite-plugin-electron": "^1.0.1",
+    "vite-plugin-electron-renderer": "^1.0.0"
+  },
+  "build": {
+    "appId": "com.joelrhoads.easykitmaker",
+    "productName": "Easy Kit Maker",
+    "asar": true,
+    "directories": {
+      "output": "release/${version}",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist-electron",
+      "dist",
+      "public"
+    ],
+    "mac": {
+      "category": "public.app-category.music",
+      "icon": "build/icon.icns",
+      "artifactName": "${productName}_${version}.${ext}",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "dmg": {
+      "title": "Easy Kit Maker",
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
+  }
+}
